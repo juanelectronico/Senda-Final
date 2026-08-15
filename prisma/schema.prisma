@@ -21,7 +21,6 @@ model Commerce {
   invoice_count    Int?         @default(0)
   is_premium       Boolean?     @default(false)
   certificate_path String?      @db.VarChar(255)
-<<<<<<< HEAD
   is_active        Boolean?     @default(false)
   createdAt        DateTime?    @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt        DateTime?    @default(now()) @map("updated_at") @db.Timestamp(6)
@@ -33,23 +32,11 @@ model Commerce {
   @@index([phone])
   @@index([email])
   @@index([is_active])
-=======
-  is_active        Boolean?     @default(true)
-  createdAt        DateTime?    @default(now()) @map("created_at") @db.Timestamp(6)
-
-  customers        Customer[]
-  invoices         Invoice[]
-
->>>>>>> 9982343a0714c4a282235e500e86481e4627361f
   @@map("commerce")
 }
 
 model Customer {
-<<<<<<< HEAD
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-=======
-  id           String   @id @default(uuid())
->>>>>>> 9982343a0714c4a282235e500e86481e4627361f
   rfc          String   @unique
   razonSocial  String
   email        String
@@ -61,7 +48,6 @@ model Customer {
 }
 
 model Invoice {
-<<<<<<< HEAD
   id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   amount           Float
   customerRfc      String
@@ -83,39 +69,17 @@ model Invoice {
   @@index([customerRfc])
   @@index([status])
   @@index([createdAt])
-=======
-  id             String        @id
-  amount         Float
-  customerRfc    String
-  customerEmail  String
-  status         InvoiceStatus @default(PENDING_CONFIRMATION)
-  facturapiId    String?
-  createdAt      DateTime      @default(now())
-  commerceId     String        @db.Uuid
-  commerce       Commerce      @relation(fields: [commerceId], references: [id])
-  razon_social   String?
-  regimen_fiscal String?
-  uso_cfdi       String?
-  codigo_postal  String?
-
->>>>>>> 9982343a0714c4a282235e500e86481e4627361f
   @@map("invoice")
 }
 
 model ChatSession {
   id                 Int       @id @default(autoincrement())
   phone_number       String    @unique @db.VarChar(20)
-<<<<<<< HEAD
   commerceId         String?   @db.Uuid
   commerce           Commerce? @relation(fields: [commerceId], references: [id])
   estado             String?   @default("IDLE") @db.VarChar(50)
   datos_parciales    Json?
   pending_invoice_id String?
-=======
-  estado             String?   @default("INICIO") @db.VarChar(50)
-  datos_parciales    Json?
-  pending_invoice_id Int?
->>>>>>> 9982343a0714c4a282235e500e86481e4627361f
   created_at         DateTime? @default(now()) @db.Timestamp(6)
   updated_at         DateTime? @default(now()) @db.Timestamp(6)
 
