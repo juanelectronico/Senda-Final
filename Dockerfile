@@ -1,9 +1,6 @@
 FROM node:22-slim
 
-RUN apt-get update && apt-get install -y \
-    openssl \
-    libatomic1 \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -13,12 +10,8 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN npx prisma generate
 
 EXPOSE 8080
 
-<<<<<<< HEAD
-CMD ["npx", "tsx", "src/index.ts"]
-=======
-CMD ["npm", "start"]
->>>>>>> 9982343a0714c4a282235e500e86481e4627361f
+CMD ["node", "server-baileys.cjs"]
