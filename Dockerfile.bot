@@ -10,7 +10,7 @@ RUN npm install
 COPY . .
 
 RUN npx prisma generate
-RUN npm run build && mv src/src/index.tsx src/src/index.ts
+RUN npm run build && mv src/src/src/src/main.ts src/src/src/src/index.ts
 
 EXPOSE 8080
 
