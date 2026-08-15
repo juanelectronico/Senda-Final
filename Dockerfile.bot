@@ -14,9 +14,5 @@ RUN npm run build
 
 EXPOSE 8080
 
-# --- NUEVO: Copiamos el script de inicio y le damos permisos ---
-COPY start.sh ./
-RUN chmod +x start.sh
-
-# --- NUEVO: Usamos el script en lugar del comando directo ---
-CMD ["/bin/bash", "start.sh"]
+# El comando final: Arranca el servidor web y mantiene el contenedor vivo
+CMD ["sh", "-c", "node server-baileys.cjs & wait"]
