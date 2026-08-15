@@ -14,5 +14,4 @@ RUN npx prisma generate
 
 EXPOSE 8080
 
-# EL COMANDO QUE REALMENTE ARRANCA TU SERVIDOR
 CMD ["node", "server-baileys.cjs"]
