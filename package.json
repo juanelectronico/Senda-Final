@@ -1,17 +1,67 @@
-FROM node:22-slim
-
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-RUN npx prisma generate
-
-EXPOSE 8080
-
-CMD ["node", "server-baileys.cjs"]
+{
+  "name": "senda",
+  "version": "1.0.0",
+  "description": "Senda - Plataforma de facturación SAT",
+  "type": "module",
+  "scripts": {
+    "dev": "node --import tsx --no-warnings src/index.ts",
+    "dev:simple": "tsx src/index.ts",
+    "build": "tsc",
+"start": "node server-baileys.cjs",
+    "clean": "rm -rf dist node_modules",
+    "test": "node --import tsx src/index.ts",
+    "postinstall": "echo '✅ Dependencias instaladas correctamente'"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^9.0.0",
+    "@google-cloud/vertexai": "^1.12.0",
+    "@google/generative-ai": "^0.24.1",
+    "@hapi/boom": "^10.0.1",
+    "@prisma/client": "^6.19.3",
+    "@supabase/supabase-js": "^2.112.3",
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "axios": "^1.19.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "express-rate-limit": "^8.6.2",
+    "facturapi": "^2.7.0",
+    "file-type": "^22.0.1",
+    "link-preview-js": "^3.2.0",
+    "mercadopago": "^2.13.0",
+    "morgan": "^1.11.0",
+    "nodemailer": "^6.10.1",
+    "pdfkit": "^0.19.1",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "uuid": "^14.0.1",
+    "ws": "^8.21.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/node": "^20.19.43",
+    "@types/nodemailer": "^6.4.24",
+    "@types/pdfkit": "^0.17.6",
+    "@types/qrcode": "^1.5.6",
+    "@types/qrcode-terminal": "^0.12.2",
+    "@types/ws": "^8.18.1",
+    "prisma": "^6.19.3",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "senda",
+    "facturacion",
+    "sat",
+    "mercado-pago",
+    "whatsapp",
+    "gemini"
+  ],
+  "author": "Senda",
+  "license": "MIT"
+}
