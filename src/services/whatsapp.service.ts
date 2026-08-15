@@ -303,15 +303,26 @@ export async function startWhatsAppBotForCommerce(
   }
 
   console.log(`🔒 [${commerceId}] Adquiriendo lock para emparejamiento...`);
+  
+  // ===== EL CAMBIO CRUCIAL =====
+  // Esto es lo que realmente arranca el bot y genera el QR
   const pairingPromise = performPairingWithLock(commerceId, cleanPhone, true)
     .finally(() => {
       pairingLocks.delete(lockKey);
       console.log(`🔓 [${commerceId}] Lock liberado`);
     });
+    
   pairingLocks.set(lockKey, pairingPromise);
-  return await pairingPromise;
-}
+  const qrCode = await pairingPromise;
+  
+  // Guardar el QR en el mapa para que la API lo encuentre
+  if (qrCode) {
+    pairingCodes.set(commerceId, qrCode);
+    console.log(`📱 [${commerceId}] QR guardado en pairingCodes`);
+  }
 
+  return qrCode;
+}
 // ============================================
 // 6. PERFORM PAIRING
 // ============================================

@@ -768,3 +768,31 @@ Reporte generado por: Asistente de Desarrollo Senda
 Próxima acción: Activar interceptor y probar flujo en vivo
 Estado: 🟢 Listo para pruebas con clientes
 >>>>>>> 9982343a0714c4a282235e500e86481e4627361f
+ 
+ 
+ 
+ 
+ # RESUMEN DEL DÍA 14 DE AGOSTO DE 2026
+
+## 1. Estado del proyecto:
+- El servidor `server-baileys.cjs` está funcionando en Google Cloud.
+- El formulario `registro-comercio.html` ya guarda en Supabase y genera links de Mercado Pago.
+- El bot de WhatsApp (Baileys) está configurado para ejecutarse junto al servidor.
+
+## 2. Pasos realizados (en orden):
+1. Configuramos el puerto dinámico `const PORT = process.env.PORT || 8080;`.
+2. Configuramos el `Dockerfile` limpio y definitivo.
+3. Arreglamos el `package.json` para que `"start"` apunte a `server-baileys.cjs`.
+4. Subimos el código a GitHub (rama `master`) y activamos el Trigger automático.
+5. Corregimos el `prisma/schema.prisma` (limpiando conflictos de Git).
+6. Google Cloud desplegó el servicio `senda-backend` correctamente.
+7. Probamos el formulario, guarda en Supabase y genera el link de Mercado Pago.
+
+## 3. ¿Qué falta hacer mañana?
+- [ ] Agregar el flujo básico del bot de WhatsApp (menú sin Gemini) para que los clientes pidan facturas.
+- [ ] (Opcional) Configurar la `GEMINI_API_KEY` en Google Cloud para activar la IA.
+
+## 4. Comandos clave para retomar mañana:
+- Arrancar el servidor local: `node server-baileys.cjs`
+- Subir cambios a GitHub: `git add .` -> `git commit -m "mensaje"` -> `git push -u origin master`
+- Ver logs de Google Cloud: (Usar el enlace del panel de Cloud Run)
