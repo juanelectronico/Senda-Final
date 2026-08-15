@@ -14,6 +14,9 @@ RUN npm run build
 
 EXPOSE 8080
 
-# Este comando ejecuta el servidor web (server-baileys.cjs) Y el bot (dist/index.js)
-# El servidor web usará CommonJS porque su extensión es .cjs, y el bot usará ESM
-CMD ["sh", "-c", "node server-baileys.cjs & node dist/index.js"]
+# --- NUEVO: Copiamos el script de inicio y le damos permisos ---
+COPY start.sh ./
+RUN chmod +x start.sh
+
+# --- NUEVO: Usamos el script en lugar del comando directo ---
+CMD ["/bin/bash", "start.sh"]
