@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senda - Alta de Comercio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl my-8">
+        <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-500 mb-2 text-center">
+            Alta de Comercio
+        </h1>
+        <p class="text-slate-400 text-sm text-center mb-6">
+            Registra tu negocio con tus credenciales del SAT y vincula tu WhatsApp para automatizar la facturación de tus clientes.
+        </p>
+
+        <!-- Formulario -->
+        <form id="registerForm" class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">RFC *</label>
+                <input type="text" id="rfc" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="XEXX010101000">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Razón Social *</label>
+                <input type="text" id="business_name" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="Mi Comercio S.A. de C.V.">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Régimen Fiscal *</label>
+                    <select id="tax_regime" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500">
+                        <option value="">Selecciona un régimen...</option>
+                        <option value="601">601 - General de Ley Personas Morales</option>
+                        <option value="603">603 - Personas Morales con Fines no Lucrativos</option>
+                        <option value="605">605 - Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+                        <option value="606">606 - Arrendamiento</option>
+                        <option value="607">607 - Demás ingresos</option>
+                        <option value="608">608 - Residentes en el Extranjero sin Establecimiento Permanente en México</option>
+                        <option value="610">610 - Ingresos por Dividendos (socios y accionistas)</option>
+                        <option value="611">611 - Ingresos por Salarios y en General por la Prestación de un Servicio Personal Subordinado</option>
+                        <option value="612">612 - Personas Físicas con Actividades Empresariales y Profesionales</option>
+                        <option value="614">614 - Ingresos por intereses</option>
+                        <option value="615">615 - Régimen de los ingresos por obtención de premios</option>
+                        <option value="616">616 - Sin obligaciones fiscales</option>
+                        <option value="620">620 - Sociedades Cooperativas de Producción que optan por diferir sus ingresos</option>
+                        <option value="621">621 - Incorporación Fiscal</option>
+                        <option value="622">622 - Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</option>
+                        <option value="623">623 - Opcional para Grupos de Sociedades</option>
+                        <option value="624">624 - Coordinados</option>
+                        <option value="625">625 - Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</option>
+                        <option value="626">626 - Régimen Simplificado de Confianza (RESICO)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Código Postal *</label>
+                    <input type="text" id="zip_code" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="01000">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Teléfono (WhatsApp) *</label>
+                    <input type="text" id="phone" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="5215512345678">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Correo Electrónico *</label>
+                    <input type="email" id="email" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="correo@dominio.com">
+                </div>
+            </div>
+
+            <hr class="border-slate-800 my-4">
+            <h3 class="text-sm font-bold text-teal-400 uppercase tracking-wider">Credenciales CSD (SAT) *</h3>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Certificado (.cer) *</label>
+                    <input type="file" id="cer_file" required class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-teal-400 hover:file:bg-slate-700">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Llave Privada (.key) *</label>
+                    <input type="file" id="key_file" required class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-teal-400 hover:file:bg-slate-700">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Contraseña de la Clave Privada *</label>
+                <input type="password" id="csd_password" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:border-teal-500" placeholder="••••••••">
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full mt-6 bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 font-bold py-3 rounded-lg transition-all shadow-lg">
+                Registrar Comercio
+            </button>
+        </form>
+    </div>
+
+    <!-- VENTANA EMERGENTE (MODAL FLOTANTE) -->
+    <div id="paymentModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 text-center shadow-2xl space-y-4">
+            <div class="w-16 h-16 bg-teal-500/10 text-teal-400 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+                ✓
+            </div>
+            <h3 class="text-xl font-bold text-slate-100">¡Comercio Registrado con Éxito!</h3>
+            <p class="text-slate-400 text-sm">
+                Tu cuenta está lista. Solo falta completar tu aportación de activación por <span class="text-teal-400 font-bold">$50.00 MXN</span> para habilitar las facturas automáticas en WhatsApp.
+            </p>
+            <div id="modalAction" class="pt-4">
+                <!-- El botón de pago exclusivo de Mercado Pago se inyectará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileToBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    const base64String = reader.result.split(',')[1];
+                    resolve(base64String);
+                };
+                reader.onerror = (error) => reject(error);
+            });
+        };
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+
+            const cerFileInput = document.getElementById('cer_file').files[0];
+            const keyFileInput = document.getElementById('key_file').files[0];
+            const passwordVal = document.getElementById('csd_password').value;
+
+            // Validación estricta en el lado del cliente
+            if (!cerFileInput || !keyFileInput || !passwordVal) {
+                alert('⚠️ Los archivos .cer, .key y la contraseña del CSD son obligatorios para realizar el registro.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Registrando comercio...';
+
+            try {
+                const csd_cer_base64 = await fileToBase64(cerFileInput);
+                const csd_key_base64 = await fileToBase64(keyFileInput);
+
+                const payload = {
+                    rfc: document.getElementById('rfc').value,
+                    business_name: document.getElementById('business_name').value,
+                    tax_regime: document.getElementById('tax_regime').value,
+                    zip_code: document.getElementById('zip_code').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    csd_cer_base64: csd_cer_base64,
+                    csd_key_base64: csd_key_base64,
+                    csd_password: passwordVal
+                };
+
+                const response = await fetch('/api/commerce/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    const modalAction = document.getElementById('modalAction');
+                    if (result.init_point) {
+                        modalAction.innerHTML = `
+                            <a href="${result.init_point}" class="block w-full bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold py-3 rounded-lg transition-all shadow-lg text-center">
+                                Pagar $50.00 MXN en Mercado Pago
+                            </a>
+                        `;
+                    } else {
+                        modalAction.innerHTML = `<p class="text-amber-400 text-sm">No se pudo generar el link de pago automático, contacta soporte.</p>`;
+                    }
+                    document.getElementById('paymentModal').classList.remove('hidden');
+                } else {
+                    alert('Error: ' + (result.error || 'No se pudo completar el registro'));
+                    btn.disabled = false;
+                    btn.textContent = 'Registrar Comercio';
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Error procesando los archivos o conectando con el servidor.');
+                btn.disabled = false;
+                btn.textContent = 'Registrar Comercio';
+            }
+        });
+    </script>
+</body>
+</html>
