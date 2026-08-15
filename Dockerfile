@@ -14,4 +14,4 @@ RUN npx prisma generate
 
 EXPOSE 8080
 
-CMD ["node", "server-baileys.cjs"]
+CMD ["sh", "-c", "ls -la /app && node server-baileys.cjs"]
