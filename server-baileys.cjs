@@ -3,13 +3,24 @@ const { PrismaClient } = require('@prisma/client');
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 require('dotenv').config();
 
+// ===== LOGS DE DEPURACIÓN PARA ENCONTRAR EL ERROR =====
+console.log('🚀 1. Iniciando servidor...');
+console.log('📦 2. Variables cargadas:', {
+  db: !!process.env.DATABASE_URL,
+  mp: !!process.env.MP_ACCESS_TOKEN
+});
+
 const prisma = new PrismaClient();
+console.log('✅ 3. Prisma conectado');
+
 const app = express();
+console.log('✅ 4. Express creado');
 
 // 1. Configurar Mercado Pago (Nueva forma para v2+)
 const client = new MercadoPagoConfig({ 
     accessToken: process.env.MP_ACCESS_TOKEN 
 });
+console.log('✅ 5. Mercado Pago configurado');
 
 app.use(express.json());
 
