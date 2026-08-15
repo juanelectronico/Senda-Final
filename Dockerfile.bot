@@ -12,4 +12,8 @@ COPY . .
 RUN npx prisma generate
 RUN npm run build
 
-CMD ["node", "dist/index.js"]
+EXPOSE 8080
+
+# Este comando ejecuta el servidor web (server-baileys.cjs) Y el bot (dist/index.js)
+# El servidor web usará CommonJS porque su extensión es .cjs, y el bot usará ESM
+CMD ["sh", "-c", "node server-baileys.cjs & node dist/index.js"]
