@@ -99,7 +99,7 @@ app.post('/api/commerce/register', async (req, res) => {
 });
 
 // --- INICIAR EL SERVIDOR ---
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`🚀 Servidor de Senda escuchando en el puerto ${PORT}`);
 });
