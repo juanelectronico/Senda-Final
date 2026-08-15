@@ -1,3 +1,4 @@
 #!/bin/bash
 node server-baileys.cjs &
-node dist/index.js
+node dist/index.js &
+wait
